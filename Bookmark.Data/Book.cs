@@ -21,9 +21,7 @@ namespace Bookmark.Data
         [Required]
         public int CurrentPage { get; set; }
 
-        [ForeignKey(nameof(Note))]
-        public int NoteId { get; set; }
-        public virtual Note Note { get; set; }
+        public List<Note> Notes { get; set; } = new List<Note>();
 
         [ForeignKey(nameof(Bookshelf))]
         public int BookShelfId { get; set; }

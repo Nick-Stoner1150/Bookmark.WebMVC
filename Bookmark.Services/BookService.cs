@@ -55,14 +55,14 @@ namespace Bookmark.Services
                         .Books
                         .Where(e => e.UserId == _userId)
                         .Select(
-                        b =>
+                        e =>
                             new BookListItem
                             {
-                                BookId = b.BookId,
-                                Title = b.Title,
-                                TotalPages = b.TotalPages,
-                                CurrentPage = b.CurrentPage,
-                                BookshelfName = b.Bookshelf.Name
+                                BookId = e.BookId,
+                                Title = e.Title,
+                                TotalPages = e.TotalPages,
+                                CurrentPage = e.CurrentPage,
+                                BookshelfName = e.Bookshelf.Name
                             });
 
                 return query.ToArray();
@@ -76,7 +76,7 @@ namespace Bookmark.Services
                 var entity =
                     ctx
                         .Books
-                        .Single(e => e.NoteId == id && e.UserId == _userId);
+                        .Single(e => e.BookId == id && e.UserId == _userId);
 
                 return
                     new BookDetail

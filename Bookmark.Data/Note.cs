@@ -19,6 +19,10 @@ namespace Bookmark.Data
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
+
+        [ForeignKey(nameof(Book))]
+        public int BookId { get; set; }
+        public virtual Book Book { get; set;  }
         public DateTimeOffset CreatedDate { get; set; }
         public DateTimeOffset? ModifiedDate { get; set; }
     }

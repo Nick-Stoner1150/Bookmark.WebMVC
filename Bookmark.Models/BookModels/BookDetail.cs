@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bookmark.Models.NoteModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,6 +23,6 @@ namespace Bookmark.Models.BookModels
         
         [Display(Name = "Bookshelf")]
         public string BookshelfName { get; set; }
-        public int Notes { get; set; }
+        public List<NoteListItem> Notes { get; set; } = new List<NoteListItem>();
     }
 }
