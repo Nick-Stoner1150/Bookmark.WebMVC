@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bookmark.Data
+namespace Bookmark.Models.NoteModels
 {
-    public class Note
+    public class NoteListItem
     {
-        [Key]
+        [Display(Name = "ID")]
         public int NoteId { get; set; }
+        [Display(Name = "Note Title")]
         public string NoteTitle { get; set; }
-        [Required]
-        public string Text { get; set; }
-
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        [Display(Name = "Created")]
         public DateTimeOffset CreatedDate { get; set; }
+        [Display(Name = "Modified")]
         public DateTimeOffset? ModifiedDate { get; set; }
+        public string BookTitle { get; set; }
     }
 }

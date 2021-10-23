@@ -1,24 +1,21 @@
-﻿using System;
+﻿using Bookmark.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bookmark.Data
+namespace Bookmark.Models.BookshelfModels
 {
-    public class Bookshelf
+    public class BookshelfDetail
     {
-        [Key]
+        [Display(Name = "ID")]
         public int BookshelfId { get; set; }
-        [Required]
+        [Display(Name = "Bookshelf Name")]
         public string Name { get; set; }
         public string Description { get; set; }
-
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; }
-        public virtual ApplicationUser User { get; set; }
         public List<Book> Books { get; set; } = new List<Book>();
+
     }
 }

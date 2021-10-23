@@ -57,12 +57,29 @@
     <Compile Include="Book.cs" />
     <Compile Include="Bookshelf.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202110231453280_init.cs" />
+    <Compile Include="Migrations\202110231453280_init.Designer.cs">
+      <DependentUpon>202110231453280_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110231631270_addedDateTimeOffset.cs" />
+    <Compile Include="Migrations\202110231631270_addedDateTimeOffset.Designer.cs">
+      <DependentUpon>202110231631270_addedDateTimeOffset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202110231453280_init.resx">
+      <DependentUpon>202110231453280_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110231631270_addedDateTimeOffset.resx">
+      <DependentUpon>202110231631270_addedDateTimeOffset.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

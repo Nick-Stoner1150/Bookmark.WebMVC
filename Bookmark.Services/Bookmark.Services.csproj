@@ -54,11 +54,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookService.cs" />
+    <Compile Include="BookshelfServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bookmark.Data\Bookmark.Data.csproj">
+      <Project>{A274BAC4-1F4C-46E0-8E9B-A6EE6BADA83C}</Project>
+      <Name>Bookmark.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bookmark.Models\Bookmark.Models.csproj">
+      <Project>{BA152496-B615-4F82-8C92-14400120202E}</Project>
+      <Name>Bookmark.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

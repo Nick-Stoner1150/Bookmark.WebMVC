@@ -29,6 +29,9 @@ namespace Bookmark.Data
         public int BookShelfId { get; set; }
         public virtual Bookshelf Bookshelf { get; set; }
 
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
     }
 }
