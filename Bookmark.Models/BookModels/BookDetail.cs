@@ -24,5 +24,7 @@ namespace Bookmark.Models.BookModels
         [Display(Name = "Bookshelf")]
         public string BookshelfName { get; set; }
         public List<NoteListItem> Notes { get; set; } = new List<NoteListItem>();
+
+        public int BookshelfId { get; set; }
     }
 }

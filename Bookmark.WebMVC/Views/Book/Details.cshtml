@@ -1,0 +1,66 @@
+﻿@model Bookmark.Models.BookModels.BookDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BookId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentPage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentPage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookshelfName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookshelfName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

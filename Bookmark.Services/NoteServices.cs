@@ -25,7 +25,9 @@ namespace Bookmark.Services
                     UserId = _userId,
                     NoteTitle = model.NoteTitle,
                     Text = model.Text,
-                    BookId = model.BookId
+                    BookId = model.BookId,
+                    CreatedDate = DateTime.Now
+                    
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -63,7 +65,7 @@ namespace Bookmark.Services
                             BookTitle = e.Book.Title,
                         });
 
-                return query;
+                return query.ToArray();
 
             }
         }

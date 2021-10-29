@@ -1,5 +1,6 @@
 ﻿using Bookmark.Models.BookModels;
 using Bookmark.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Bookmark.WebMVC.Controllers
     {
         private BookService CreateBookService()
         {
-            var service = new BookService();
+            var userId = User.Identity.GetUserId();
+            var service = new BookService(userId);
             return service;
         }
         // GET: Books
@@ -45,7 +47,7 @@ namespace Bookmark.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Note could not be created");
+            ModelState.AddModelError("", "Book could not be created");
 
             return View(model);
         }
@@ -59,5 +61,69 @@ namespace Bookmark.WebMVC.Controllers
 
             return View(model);
         }
+
+        // GET: Edit 
+        public ActionResult Edit (int id)
+        {
+            var service = CreateBookService();
+            var detail = service.GetBookById(id);
+            var model =
+                new BookEdit
+                {
+                    BookId = detail.BookId,
+                    CurrentPage = detail.CurrentPage,
+                    BookshelfId = detail.BookshelfId
+                };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, BookEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.BookId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch!");
+                return View(model);
+            }
+
+            var service = CreateBookService();
+
+            if(service.UpdateBook(model))
+            {
+                TempData["SaveResult"] = "Your book was updated!";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your book could not be updated!");
+            return View();
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateBookService();
+            var model = svc.GetBookById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateBookService();
+
+            service.DeleteBook(id);
+
+            TempData["SaveResult"] = "Your book was deleted!";
+
+            return RedirectToAction("Index");
+        }
+
+        
     }
 }

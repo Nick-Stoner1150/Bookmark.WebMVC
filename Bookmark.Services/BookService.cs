@@ -86,7 +86,8 @@ namespace Bookmark.Services
                         Author = entity.Author,
                         TotalPages = entity.TotalPages,
                         CurrentPage = entity.CurrentPage,
-                        BookshelfName = entity.Bookshelf.Name
+                        BookshelfName = entity.Bookshelf.Name,
+                        BookshelfId = entity.BookShelfId
                     };
             }
         }
