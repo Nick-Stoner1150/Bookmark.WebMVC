@@ -1,6 +1,5 @@
 ﻿@model Bookmark.Models.BookshelfModels.BookshelfDetail
 
-
 @{
     ViewBag.Title = "Details";
 }
@@ -34,20 +33,10 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Books)
-        </dt>
-        <dd>
-            @foreach (Bookmark.Data.Book type in Model.Books)
-            {
-                @Html.DisplayFor(model => type.Title)
-            }
-        </dd>
-
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.BookshelfId }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

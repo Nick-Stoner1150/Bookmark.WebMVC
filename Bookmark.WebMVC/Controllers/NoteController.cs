@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace Bookmark.WebMVC.Controllers
 {
-    [Authorize]
     public class NoteController : Controller
     {
         private NoteServices CreateNoteSerivce()
