@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="BookAssignments.cs" />
     <Compile Include="Bookshelf.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202110231453280_init.cs" />
@@ -71,6 +72,10 @@
     <Compile Include="Migrations\202110232027115_updatedEntities.cs" />
     <Compile Include="Migrations\202110232027115_updatedEntities.Designer.cs">
       <DependentUpon>202110232027115_updatedEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110301402252_updatedBookshelf.cs" />
+    <Compile Include="Migrations\202110301402252_updatedBookshelf.designer.cs">
+      <DependentUpon>202110301402252_updatedBookshelf.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
@@ -111,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110232027115_updatedEntities.resx">
       <DependentUpon>202110232027115_updatedEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110301402252_updatedBookshelf.resx">
+      <DependentUpon>202110301402252_updatedBookshelf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
