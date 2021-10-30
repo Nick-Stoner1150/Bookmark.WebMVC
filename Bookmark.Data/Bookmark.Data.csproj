@@ -72,6 +72,14 @@
     <Compile Include="Migrations\202110232027115_updatedEntities.Designer.cs">
       <DependentUpon>202110232027115_updatedEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110302258182_addedBookProgress.cs" />
+    <Compile Include="Migrations\202110302258182_addedBookProgress.designer.cs">
+      <DependentUpon>202110302258182_addedBookProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110302300586_addedBookProgress1.cs" />
+    <Compile Include="Migrations\202110302300586_addedBookProgress1.designer.cs">
+      <DependentUpon>202110302300586_addedBookProgress1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110232027115_updatedEntities.resx">
       <DependentUpon>202110232027115_updatedEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110302258182_addedBookProgress.resx">
+      <DependentUpon>202110302258182_addedBookProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110302300586_addedBookProgress1.resx">
+      <DependentUpon>202110302300586_addedBookProgress1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

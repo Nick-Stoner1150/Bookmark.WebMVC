@@ -26,5 +26,8 @@ namespace Bookmark.Models.BookModels
         public List<NoteListItem> Notes { get; set; } = new List<NoteListItem>();
 
         public int BookshelfId { get; set; }
+
+        public decimal BookProgress { get; set; }
+        
     }
 }

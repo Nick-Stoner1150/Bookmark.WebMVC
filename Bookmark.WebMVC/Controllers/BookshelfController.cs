@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Bookmark.WebMVC.Controllers
 {
+    [Authorize]
     public class BookshelfController : Controller
     {
         private BookshelfServices CreateBookshelfService()

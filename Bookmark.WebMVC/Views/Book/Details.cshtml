@@ -38,7 +38,11 @@
             @Html.DisplayNameFor(model => model.TotalPages)
         </dt>
 
-        <dd>
+        @*<div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: @Model.BookProgress%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div> *@
+
+        @* <dd>
             @Html.DisplayFor(model => model.TotalPages)
         </dd>
 
@@ -48,7 +52,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.CurrentPage)
-        </dd>
+        </dd> *@
 
         <dt>
             @Html.DisplayNameFor(model => model.BookshelfName)
@@ -61,6 +65,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
