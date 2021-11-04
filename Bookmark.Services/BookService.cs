@@ -27,7 +27,7 @@ namespace Bookmark.Services
                     Author = model.Author,
                     TotalPages = model.TotalPages,
                     CurrentPage = model.CurrentPage,
-                    BookShelfId = model.BookshelfId,
+                    BookShelfId = model.BookshelfId
                     
                 };
 
@@ -88,8 +88,7 @@ namespace Bookmark.Services
                         TotalPages = entity.TotalPages,
                         CurrentPage = entity.CurrentPage,
                         BookshelfName = entity.Bookshelf.Name,
-                        BookshelfId = entity.BookShelfId,
-                        BookProgress = entity.Progress
+                        BookshelfId = entity.BookShelfId
                     };
             }
         }

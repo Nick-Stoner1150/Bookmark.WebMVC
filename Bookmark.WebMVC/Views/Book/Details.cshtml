@@ -4,67 +4,57 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Book Details</h2>
 
 <div>
-    <h4>BookDetail</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BookId)
-        </dt>
+    <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+        <div class="card-header">ID: @Html.DisplayFor(model => model.BookId)</div>
+        <div class="card-body">
+            <h4 class="card-title">@Html.DisplayFor(model => model.Title)</h4>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Author)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BookId)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Author)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalPages)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: @(Model.BookProgress +"%")" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BookshelfName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BookshelfName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalPages)
-        </dt>
-
-        @*<div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: @Model.BookProgress%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-        </div> *@
-
-        @* <dd>
-            @Html.DisplayFor(model => model.TotalPages)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentPage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CurrentPage)
-        </dd> *@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BookshelfName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BookshelfName)
-        </dd>
-
-    </dl>
+            </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        
+
+            @* <dd>
+                    @Html.DisplayFor(model => model.TotalPages)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CurrentPage)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CurrentPage)
+                </dd> *@
+
+            
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

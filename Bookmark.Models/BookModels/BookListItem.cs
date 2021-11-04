@@ -22,5 +22,15 @@ namespace Bookmark.Models.BookModels
         [Display(Name = "Bookshelf")]
         public string BookshelfName { get; set; }
         // public int Notes { get; set; }
+        [Display(Name = "Progress")]
+        public decimal BookProgress
+        {
+            get
+            {
+                decimal bookProgress = (decimal)CurrentPage / (decimal)TotalPages;
+                return bookProgress * 100m;
+
+            }
+        }
     }
 }

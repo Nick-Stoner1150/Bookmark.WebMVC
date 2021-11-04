@@ -31,14 +31,6 @@ namespace Bookmark.Data
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
 
-        public decimal Progress
-        {
-           get
-            {
-                var progressDecimal = CurrentPage / TotalPages;
-                return progressDecimal * 100;
-            }
-        }
 
     }
 }

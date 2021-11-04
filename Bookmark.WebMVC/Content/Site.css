@@ -8,6 +8,8 @@
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 50px;
+    align-content: center;
+
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -26,4 +28,13 @@ textarea {
 
 .image-logo {
     max-height: 90px;
+}
+
+.detail-body {
+    align-content: center;
+}
+
+.li-spacing {
+    padding-right: 10px;
+    margin-top: 5px;
 }
