@@ -88,7 +88,7 @@ namespace Bookmark.WebMVC.Controllers
 
             if (model.BookshelfId != id)
             {
-                ModelState.AddModelError("", "ID Mismatch!");
+                ModelState.AddModelError("", "The ID Must remain the same!");
                 return View(model);
             }
 

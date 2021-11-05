@@ -7,44 +7,33 @@
 <h2>Details</h2>
 
 <div>
-    <h4>NoteDetail</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NoteId)
-        </dt>
+    <div class="card text-white bg-secondary mb-3" style="max-width: 20rem; display: inline-block;">
+        <div class="card-header">ID: @Html.DisplayFor(model => model.NoteId)</div>
+        <div class="card-body">
+            <h4 class="card-title">@Html.DisplayFor(model => model.NoteTitle)</h4>
+            <dl class="dl-horizontal">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Text)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoteId)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Text)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NoteTitle)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Book)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoteTitle)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Book)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Book)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Book)
-        </dd>
-
-    </dl>
+                </dl>
+        </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.NoteId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

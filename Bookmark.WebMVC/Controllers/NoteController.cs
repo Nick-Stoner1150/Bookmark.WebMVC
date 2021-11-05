@@ -1,4 +1,5 @@
-﻿using Bookmark.Models.NoteModels;
+﻿using Bookmark.Data;
+using Bookmark.Models.NoteModels;
 using Bookmark.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -12,6 +13,7 @@ namespace Bookmark.WebMVC.Controllers
     [Authorize]
     public class NoteController : Controller
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
         private NoteServices CreateNoteSerivce()
         {
             var userId = User.Identity.GetUserId();
@@ -31,6 +33,12 @@ namespace Bookmark.WebMVC.Controllers
         // GET: Create Note
         public ActionResult Create()
         {
+            ViewData["Books"] = _db.Books.Select(book => new SelectListItem
+            {
+                Text = book.Title,
+                Value = book.BookId.ToString()
+            });
+
             return View();
         }
 

@@ -1,4 +1,5 @@
-﻿using Bookmark.Models.BookModels;
+﻿using Bookmark.Data;
+using Bookmark.Models.BookModels;
 using Bookmark.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -12,6 +13,7 @@ namespace Bookmark.WebMVC.Controllers
     [Authorize]
     public class BookController : Controller
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
         private BookService CreateBookService()
         {
             var userId = User.Identity.GetUserId();
@@ -30,6 +32,12 @@ namespace Bookmark.WebMVC.Controllers
         // GET: Create Book
         public ActionResult Create()
         {
+            ViewData["Bookshelves"] = _db.Bookshelves.Select(bookshelf => new SelectListItem
+            {
+                Text = bookshelf.Name,
+                Value = bookshelf.BookshelfId.ToString()
+            });
+
             return View();
         }
 
@@ -68,6 +76,13 @@ namespace Bookmark.WebMVC.Controllers
         {
             var service = CreateBookService();
             var detail = service.GetBookById(id);
+
+            ViewData["Bookshelves"] = _db.Bookshelves.Select(bookshelf => new SelectListItem
+            {
+                Text = bookshelf.Name,
+                Value = bookshelf.BookshelfId.ToString()
+            });
+
             var model =
                 new BookEdit
                 {

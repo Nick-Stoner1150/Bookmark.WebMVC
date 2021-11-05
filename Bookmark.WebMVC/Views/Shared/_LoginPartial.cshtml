@@ -10,8 +10,8 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li class="li-spacing">
-             <a href="javascript:document.getElementById('logoutForm').submit()"></a>
-                <button type="button" class="btn btn-info">Log Off</button>
+             <a href="javascript:document.getElementById('logoutForm').submit()"><button type="button" class="btn btn-info">Log Off</button></a>
+                
         </li>
     </ul>
     }
