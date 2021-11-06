@@ -8,10 +8,9 @@
 
 <div>
     <hr />
-    <div class="card text-white bg-secondary mb-3" style="max-width: 20rem; display: inline-block;">
-        <div class="card-header">ID: @Html.DisplayFor(model => model.NoteId)</div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem; display: inline-block;">
+        <div class="card-header"><h5>@Html.DisplayFor(model => model.NoteTitle)</h5></div>
         <div class="card-body">
-            <h4 class="card-title">@Html.DisplayFor(model => model.NoteTitle)</h4>
             <dl class="dl-horizontal">
                 <dl class="dl-horizontal">
                     <dt>
@@ -28,6 +27,12 @@
 
                     <dd>
                         @Html.DisplayFor(model => model.Book)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NoteId)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.NoteId)
                     </dd>
 
                 </dl>

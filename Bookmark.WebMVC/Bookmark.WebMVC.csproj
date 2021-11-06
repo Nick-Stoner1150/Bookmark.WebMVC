@@ -204,8 +204,8 @@
     <Content Include="Content\img\BookLibrary.png" />
     <Content Include="Content\img\icons8-bookmark-48.png" />
     <Content Include="Content\img\my books.png" />
-    <Content Include="Content\img\Your Bookshelves.png" />
-    <Content Include="Content\img\Your notes.png" />
+    <Content Include="Content\img\Your Bookshelves.PNG" />
+    <Content Include="Content\img\Your notes.PNG" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

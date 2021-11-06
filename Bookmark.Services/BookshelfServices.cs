@@ -10,6 +10,7 @@ namespace Bookmark.Services
 {
     public class BookshelfServices
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
         private readonly string _userId;
 
         public BookshelfServices(string userId)
@@ -65,12 +66,17 @@ namespace Bookmark.Services
                     .Bookshelves
                     .Single(b => b.BookshelfId == id && b.UserId == _userId);
 
+                var query =
+                    _db
+                    .Books
+                    .Where(q => q.BookShelfId == id);
+
                 return new BookshelfDetail
                 {
                     BookshelfId = bookshelf.BookshelfId,
                     Name = bookshelf.Name,
                     Description = bookshelf.Name,
-                    Books = bookshelf.Books
+                    NumberOfBooks = query.Count()
                 };
             }
         }

@@ -10,6 +10,7 @@ namespace Bookmark.Services
 {
     public class BookService
     {
+        private ApplicationDbContext _db = new ApplicationDbContext();
 
         private readonly string _userId;
 
@@ -79,6 +80,11 @@ namespace Bookmark.Services
                         .Books
                         .Single(e => e.BookId == id && e.UserId == _userId);
 
+                var query =
+                       _db
+                           .Notes
+                           .Where(e => e.BookId == id).ToArray();
+
                 return
                     new BookDetail
                     {
@@ -88,7 +94,8 @@ namespace Bookmark.Services
                         TotalPages = entity.TotalPages,
                         CurrentPage = entity.CurrentPage,
                         BookshelfName = entity.Bookshelf.Name,
-                        BookshelfId = entity.BookShelfId
+                        BookshelfId = entity.BookShelfId,
+                        TotalNotes = query.Count()
                     };
             }
         }

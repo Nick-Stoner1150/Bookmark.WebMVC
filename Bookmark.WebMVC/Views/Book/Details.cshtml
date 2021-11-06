@@ -8,10 +8,9 @@
 
 <div>
     <hr />
-    <div class="card text-white bg-secondary mb-3" style="max-width: 20rem; display: inline-block;">
-        <div class="card-header">ID: @Html.DisplayFor(model => model.BookId)</div>
+    <div class="card border-secondary mb-3" style="max-width: 20rem; display: inline-block;">
+        <div class="card-header"><h5>@Html.DisplayFor(model => model.Title)</h5></div>
         <div class="card-body">
-            <h4 class="card-title">@Html.DisplayFor(model => model.Title)</h4>
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.Author)
@@ -24,16 +23,35 @@
                 <dt>
                     @Html.DisplayNameFor(model => model.TotalPages)
                 </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TotalPages)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CurrentPage)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CurrentPage)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.BookProgress)
+                </dt>
 
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: @(Model.BookProgress +"%")" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: @(Model.BookProgress +"%")"></div>
                 </div>
+
                 <dt>
                     @Html.DisplayNameFor(model => model.BookshelfName)
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.BookshelfName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalNotes)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.TotalNotes)
                 </dd>
 
             </dl>

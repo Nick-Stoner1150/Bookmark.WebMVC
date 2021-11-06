@@ -16,7 +16,9 @@ namespace Bookmark.Models.BookshelfModels
         [Display(Name = "Bookshelf Name")]
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Book> Books { get; set; } = new List<Book>();
+        
+        [Display(Name = "# of Books")]
+        public int NumberOfBooks { get; set; }
 
     }
 }

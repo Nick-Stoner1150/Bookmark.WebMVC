@@ -25,15 +25,15 @@
         <div class="carousel-item">
             <img src="~/Content/img/Your Bookshelves.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
+                <h5>Add Bookshelves</h5>
+                <p style="color: black;">Create custom Bookshelves to organize your books!</p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="~/Content/img/Your notes.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
+                <h5>Add Notes</h5>
+                <p style="color: black;">Whether it's a quote or a thought, write it down and add it to your Books!'</p>
             </div>
         </div>
     </div>
@@ -53,16 +53,18 @@
         <p>
             You can't have any books without somewhere to put them! Get started by creating a Bookshelf to store your books. 
         </p>
-        <p><a href="@Url.Action("Create", "Bookshelf")"><button type="button" class="btn btn-info">Get Started &raquo;</button></a></p>
+        <p><a href="@Url.Action("Create", "Bookshelf")"><button type="button" class="btn btn-info">Create Bookshelves &raquo;</button></a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Add Your Books</h2>
+        <p>
+            If you are currently reading a book, or just want to add one to your wish list, click the button down below to start adding to your library!
+        </p>
+        <p><a href="@Url.Action("Create", "Book")"><button type="button" class="btn btn-info">Create Books &raquo;</button></a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Find Books to Read</h2>
+        <p>If you are unsure which book you want to read, click the link below to head on over to Amazon to start searching for your next book to read!</p>
+        <p><a class="btn btn-default" href="https://www.amazon.com/gp/browse.html?node=283155&ref_=nav_em__bo_t3_0_2_13_2"><button type="button" class="btn btn-info">Amazon Books &raquo;</button></a></p>
     </div>
 </div
