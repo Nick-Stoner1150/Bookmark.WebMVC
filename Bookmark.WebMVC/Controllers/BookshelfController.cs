@@ -12,19 +12,16 @@ namespace Bookmark.WebMVC.Controllers
     [Authorize]
     public class BookshelfController : Controller
     {
-        private BookshelfServices CreateBookshelfService()
-        {
-            var userId = User.Identity.GetUserId();
-            var service = new BookshelfServices(userId);
+        private readonly IBookshelfServices _service;
 
-            return service;
+        public BookshelfController(IBookshelfServices service)
+        {
+            _service = service;
         }
         // GET: Bookshelves
         public ActionResult Index()
         {
-            var service = CreateBookshelfService();
-            var model = service.GetBookshelves();
-
+            var model = _service.GetBookshelves(User.Identity.GetUserId());
             return View(model);
         }
 
@@ -41,9 +38,9 @@ namespace Bookmark.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = CreateBookshelfService();
+            model.UserId = User.Identity.GetUserId();
 
-            if (service.CreateBookshelf(model))
+            if (_service.CreateBookshelf(model))
             {
                 TempData["SaveResult"] = "Your bookshelf was created!";
                 return RedirectToAction("Index");
@@ -57,8 +54,7 @@ namespace Bookmark.WebMVC.Controllers
         // GET: Bookshelf By Id
         public ActionResult Details(int id)
         {
-            var svc = CreateBookshelfService();
-            var model = svc.Get(id);
+            var model = _service.Get(id, User.Identity.GetUserId());
 
             return View(model);
         }
@@ -66,8 +62,7 @@ namespace Bookmark.WebMVC.Controllers
         //GET: Edit
         public ActionResult Edit(int id)
         {
-            var service = CreateBookshelfService();
-            var detail = service.Get(id);
+            var detail = _service.Get(id, User.Identity.GetUserId());
             var model =
                 new BookshelfEdit
                 {
@@ -92,9 +87,9 @@ namespace Bookmark.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = CreateBookshelfService();
+            model.UserId = User.Identity.GetUserId();
 
-            if(service.UpdateBookshelf(model))
+            if(_service.UpdateBookshelf(model))
             {
                 TempData["SaveResult"] = "Your bookshelf was updated!";
                 return RedirectToAction("Index");
@@ -106,8 +101,7 @@ namespace Bookmark.WebMVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            var svc = CreateBookshelfService();
-            var model = svc.Get(id);
+            var model = _service.Get(id, User.Identity.GetUserId());
 
             return View(model);
         }
@@ -117,9 +111,8 @@ namespace Bookmark.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = CreateBookshelfService();
 
-            service.DeleteBookshelf(id);
+            _service.DeleteBookshelf(id, User.Identity.GetUserId());
 
             TempData["SaveResult"] = "Your bookshelf was deleted";
 

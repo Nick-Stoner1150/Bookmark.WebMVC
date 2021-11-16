@@ -7,13 +7,13 @@ namespace Bookmark.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class deletedProgress : IMigrationMetadata
+    public sealed partial class initCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(deletedProgress));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111030023432_deletedProgress"; }
+            get { return "202111161449179_initCreate"; }
         }
         
         string IMigrationMetadata.Source

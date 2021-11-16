@@ -14,18 +14,17 @@ namespace Bookmark.WebMVC.Controllers
     public class NoteController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
-        private NoteServices CreateNoteSerivce()
+        private readonly INoteServices _service;
+
+        public NoteController(INoteServices service)
         {
-            var userId = User.Identity.GetUserId();
-            var service = new NoteServices(userId);
-            return service;
+            _service = service;
         }
 
         // GET: Note
         public ActionResult Index()
         {
-            var service = CreateNoteSerivce();
-            var model = service.GetNotes();
+            var model = _service.GetNotes(User.Identity.GetUserId());
 
             return View(model);
         }
@@ -49,9 +48,9 @@ namespace Bookmark.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = CreateNoteSerivce();
+            model.UserId = User.Identity.GetUserId();
 
-            if (service.CreateNote(model))
+            if (_service.CreateNote(model))
             {
                 TempData["SaveResult"] = "Your note was created!";
                 return RedirectToAction("Index");
@@ -67,16 +66,14 @@ namespace Bookmark.WebMVC.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var svc = CreateNoteSerivce();
-            var model = svc.GetNoteById(id);
+            var model = _service.GetNoteById(id, User.Identity.GetUserId());
 
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            var service = CreateNoteSerivce();
-            var detail = service.GetNoteById(id);
+            var detail = _service.GetNoteById(id, User.Identity.GetUserId());
             var model =
                 new NoteEdit
                 {
@@ -100,9 +97,9 @@ namespace Bookmark.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = CreateNoteSerivce();
+            model.UserId = User.Identity.GetUserId();
 
-            if (service.UpdateNote(model))
+            if (_service.UpdateNote(model))
             {
                 TempData["SaveResult"] = "Your note was updated!";
                 return RedirectToAction("Index");
@@ -114,19 +111,18 @@ namespace Bookmark.WebMVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            var svc = CreateNoteSerivce();
-            var model = svc.GetNoteById(id);
+            var model = _service.GetNoteById(id, User.Identity.GetUserId());
 
             return View(model);
         }
 
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = CreateNoteSerivce();
 
-            service.DeleteNote(id);
+            _service.DeleteNote(id, User.Identity.GetUserId());
 
             TempData["SaveResult"] = "Your note was deleted!";
 

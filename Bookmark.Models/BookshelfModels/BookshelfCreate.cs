@@ -18,5 +18,6 @@ namespace Bookmark.Models.BookshelfModels
         [MinLength(1, ErrorMessage = "Please enter at least 1 character")]
         [MaxLength(50, ErrorMessage = "There are too many characters")]
         public string Description { get; set; }
+        public string UserId { get; set; }
     }
 }

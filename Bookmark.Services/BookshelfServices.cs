@@ -8,22 +8,17 @@ using System.Threading.Tasks;
 
 namespace Bookmark.Services
 {
-    public class BookshelfServices
+    public class BookshelfServices : IBookshelfServices
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
-        private readonly string _userId;
 
-        public BookshelfServices(string userId)
-        {
-            _userId = userId;
-        }
 
         public bool CreateBookshelf(BookshelfCreate model)
         {
             var entity =
                 new Bookshelf()
                 {
-                    UserId = _userId,
+                    UserId = model.UserId,
                     Name = model.Name,
                     Description = model.Description
                 };
@@ -32,17 +27,17 @@ namespace Bookmark.Services
             {
                 ctx.Bookshelves.Add(entity);
                 return ctx.SaveChanges() == 1;
-            }    
+            }
         }
 
-        public IEnumerable<BookshelfListItem> GetBookshelves()
+        public IEnumerable<BookshelfListItem> GetBookshelves(string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Bookshelves
-                        .Where(e => e.UserId == _userId)
+                        .Where(e => e.UserId == userId)
                         .Select(
                             e =>
                                 new BookshelfListItem
@@ -57,14 +52,14 @@ namespace Bookmark.Services
             }
         }
 
-        public BookshelfDetail Get(int id)
+        public BookshelfDetail Get(int id, string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var bookshelf =
                     ctx
                     .Bookshelves
-                    .Single(b => b.BookshelfId == id && b.UserId == _userId);
+                    .Single(b => b.BookshelfId == id && b.UserId == userId);
 
                 var query =
                     _db
@@ -75,7 +70,7 @@ namespace Bookmark.Services
                 {
                     BookshelfId = bookshelf.BookshelfId,
                     Name = bookshelf.Name,
-                    Description = bookshelf.Name,
+                    Description = bookshelf.Description,
                     NumberOfBooks = query.Count()
                 };
             }
@@ -88,7 +83,7 @@ namespace Bookmark.Services
                 var entity =
                     ctx
                         .Bookshelves
-                        .Single(e => e.BookshelfId == model.BookshelfId && e.UserId == _userId);
+                        .Single(e => e.BookshelfId == model.BookshelfId && e.UserId == model.UserId);
 
                 entity.Name = model.Name;
                 entity.Description = model.Description;
@@ -97,14 +92,14 @@ namespace Bookmark.Services
             }
         }
 
-        public bool DeleteBookshelf(int bookshelfId)
+        public bool DeleteBookshelf(int bookshelfId, string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Bookshelves
-                        .Single(e => e.BookshelfId == bookshelfId && e.UserId == _userId);
+                        .Single(e => e.BookshelfId == bookshelfId && e.UserId == userId);
 
                 ctx.Bookshelves.Remove(entity);
 

@@ -8,28 +8,22 @@ using System.Threading.Tasks;
 
 namespace Bookmark.Services
 {
-    public class BookService
+    public class BookService : IBookService
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
 
-        private readonly string _userId;
-
-        public BookService(string userId)
-        {
-            _userId = userId;
-        }
         public bool CreateBook(BookCreate model)
         {
             var entity =
                 new Book()
                 {
-                    UserId = _userId,
+                    UserId = model.UserId,
                     Title = model.Title,
                     Author = model.Author,
                     TotalPages = model.TotalPages,
                     CurrentPage = model.CurrentPage,
                     BookShelfId = model.BookshelfId
-                    
+
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -48,14 +42,14 @@ namespace Bookmark.Services
             }
         }
 
-        public IEnumerable<BookListItem> GetBooks()
+        public IEnumerable<BookListItem> GetBooks(string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Books
-                        .Where(e => e.UserId == _userId)
+                        .Where(e => e.UserId == userId)
                         .Select(
                         e =>
                             new BookListItem
@@ -71,14 +65,14 @@ namespace Bookmark.Services
             }
         }
 
-        public BookDetail GetBookById(int id)
+        public BookDetail GetBookById(int id, string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Books
-                        .Single(e => e.BookId == id && e.UserId == _userId);
+                        .Single(e => e.BookId == id && e.UserId == userId);
 
                 var query =
                        _db
@@ -107,7 +101,7 @@ namespace Bookmark.Services
                 var entity =
                     ctx
                         .Books
-                        .Single(e => e.BookId == model.BookId && e.UserId == _userId);
+                        .Single(e => e.BookId == model.BookId && e.UserId == model.UserId);
 
                 entity.CurrentPage = model.CurrentPage;
                 entity.BookShelfId = model.BookshelfId;
@@ -116,14 +110,14 @@ namespace Bookmark.Services
             }
         }
 
-        public bool DeleteBook(int bookId)
+        public bool DeleteBook(int bookId, string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Books
-                        .Single(e => e.BookId == bookId && e.UserId == _userId);
+                        .Single(e => e.BookId == bookId && e.UserId == userId);
 
                 ctx.Books.Remove(entity);
 

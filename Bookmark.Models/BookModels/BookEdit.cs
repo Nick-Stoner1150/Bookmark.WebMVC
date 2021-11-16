@@ -11,5 +11,6 @@ namespace Bookmark.Models.BookModels
         public int BookId { get; set; }
         public int CurrentPage { get; set; }
         public int BookshelfId { get; set; }
+        public string UserId { get; set; }
     }
 }

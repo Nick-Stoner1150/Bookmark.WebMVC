@@ -14,6 +14,7 @@ namespace Bookmark.Models.NoteModels
         public string Text { get; set; }
         [Display(Name = "Book")]
         public int BookId { get; set; }
+        public string UserId { get; set; }
 
     }
 }

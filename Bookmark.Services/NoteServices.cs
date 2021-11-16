@@ -8,26 +8,20 @@ using System.Threading.Tasks;
 
 namespace Bookmark.Services
 {
-    public class NoteServices
+    public class NoteServices : INoteServices
     {
-        private readonly string _userId;
-
-        public NoteServices(string userId)
-        {
-            _userId = userId;
-        }
 
         public bool CreateNote(NoteCreate model)
         {
             var entity =
                 new Note()
                 {
-                    UserId = _userId,
+                    UserId = model.UserId,
                     NoteTitle = model.NoteTitle,
                     Text = model.Text,
                     BookId = model.BookId,
                     CreatedDate = DateTime.Now
-                    
+
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -46,14 +40,14 @@ namespace Bookmark.Services
             }
         }
 
-        public IEnumerable<NoteListItem> GetNotes()
+        public IEnumerable<NoteListItem> GetNotes(string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Notes
-                        .Where(e => e.UserId == _userId)
+                        .Where(e => e.UserId == userId)
                         .Select(
                         e =>
                         new NoteListItem
@@ -70,14 +64,14 @@ namespace Bookmark.Services
             }
         }
 
-        public NoteDetail GetNoteById(int id)
+        public NoteDetail GetNoteById(int id, string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Notes
-                        .Single(e => e.NoteId == id && e.UserId == _userId);
+                        .Single(e => e.NoteId == id && e.UserId == userId);
 
                 return
                     new NoteDetail
@@ -97,7 +91,7 @@ namespace Bookmark.Services
                 var entity =
                     ctx
                         .Notes
-                        .Single(e => e.NoteId == model.NoteId && e.UserId == _userId);
+                        .Single(e => e.NoteId == model.NoteId && e.UserId == model.UserId);
 
                 entity.NoteTitle = model.NoteTitle;
                 entity.Text = model.Text;
@@ -106,14 +100,14 @@ namespace Bookmark.Services
             }
         }
 
-        public bool DeleteNote(int id)
+        public bool DeleteNote(int id, string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Notes
-                    .Single(e => e.NoteId == id && e.UserId == _userId);
+                    .Single(e => e.NoteId == id && e.UserId == userId);
 
                 ctx.Notes.Remove(entity);
 

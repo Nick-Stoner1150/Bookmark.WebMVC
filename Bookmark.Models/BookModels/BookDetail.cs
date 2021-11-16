@@ -38,6 +38,6 @@ namespace Bookmark.Models.BookModels
         }
         [Display(Name = "# of Notes")]
         public int TotalNotes { get; set; }
-        
+
     }
 }

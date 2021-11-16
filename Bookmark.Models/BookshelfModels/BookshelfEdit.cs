@@ -13,5 +13,6 @@ namespace Bookmark.Models.BookshelfModels
         [Display(Name = "Bookshelf Name")]
         public string Name { get; set; }
         public string Description { get; set; }
+        public string UserId { get; set; }
     }
 }

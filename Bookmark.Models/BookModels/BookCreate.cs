@@ -26,5 +26,6 @@ namespace Bookmark.Models.BookModels
         [Display(Name = "Current Page")]
         public int CurrentPage { get; set; }
         public int BookshelfId { get; set; }
+        public string UserId { get; set; }
     }
 }

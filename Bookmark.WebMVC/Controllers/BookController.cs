@@ -14,18 +14,17 @@ namespace Bookmark.WebMVC.Controllers
     public class BookController : Controller
     {
         private ApplicationDbContext _db = new ApplicationDbContext();
-        private BookService CreateBookService()
+        private readonly IBookService _service;
+
+        public BookController(IBookService service)
         {
-            var userId = User.Identity.GetUserId();
-            var service = new BookService(userId);
-            return service;
+            _service = service;
         }
+
         // GET: Books
         public ActionResult Index()
         {
-            var service = CreateBookService();
-            var model = service.GetBooks();
-
+            var model = _service.GetBooks(User.Identity.GetUserId());
             return View(model);
         }
 
@@ -48,9 +47,10 @@ namespace Bookmark.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = CreateBookService();
+            model.UserId = User.Identity.GetUserId();
 
-            if (service.CreateBook(model))
+
+            if (_service.CreateBook(model))
             {
                 TempData["SaveResult"] = "Your book was created!";
                 return RedirectToAction("Index");
@@ -65,8 +65,7 @@ namespace Bookmark.WebMVC.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var svc = CreateBookService();
-            var model = svc.GetBookById(id);
+            var model = _service.GetBookById(id, User.Identity.GetUserId());
 
             return View(model);
         }
@@ -74,8 +73,7 @@ namespace Bookmark.WebMVC.Controllers
         // GET: Edit 
         public ActionResult Edit (int id)
         {
-            var service = CreateBookService();
-            var detail = service.GetBookById(id);
+            var detail = _service.GetBookById(id, User.Identity.GetUserId());
 
             ViewData["Bookshelves"] = _db.Bookshelves.Select(bookshelf => new SelectListItem
             {
@@ -100,15 +98,16 @@ namespace Bookmark.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
+            model.UserId = User.Identity.GetUserId();
+
             if (model.BookId != id)
             {
                 ModelState.AddModelError("", "ID Mismatch!");
                 return View(model);
             }
 
-            var service = CreateBookService();
 
-            if(service.UpdateBook(model))
+            if(_service.UpdateBook(model))
             {
                 TempData["SaveResult"] = "Your book was updated!";
                 return RedirectToAction("Index");
@@ -120,8 +119,7 @@ namespace Bookmark.WebMVC.Controllers
 
         public ActionResult Delete(int id)
         {
-            var svc = CreateBookService();
-            var model = svc.GetBookById(id);
+            var model = _service.GetBookById(id, User.Identity.GetUserId());
 
             return View(model);
         }
@@ -131,9 +129,7 @@ namespace Bookmark.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = CreateBookService();
-
-            service.DeleteBook(id);
+            _service.DeleteBook(id, User.Identity.GetUserId());
 
             TempData["SaveResult"] = "Your book was deleted!";
 
